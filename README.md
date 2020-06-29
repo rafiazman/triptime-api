@@ -1,6 +1,6 @@
 <h1 align="center">
     <a href="https://trip-time-develop.herokuapp.com">
-        <img src="/docs/bw_logo_github.png" alt="TripTime" width="200">
+        <img src="https://raw.githubusercontent.com/tantigers/TripTime/master/docs/bw_logo_github.png" alt="TripTime" width="200">
     </a>
     <br>
     TripTime
@@ -38,7 +38,7 @@ can be found [here](https://tantigers.github.io/TripTime).
 &ensp;
 
 <p align="center">
-  <img src="/docs/map-screenshot.png?raw=true" width="800" alt="TripTime Map">
+  <img src="https://raw.githubusercontent.com/tantigers/TripTime/master/docs/map-screenshot.png" width="800" alt="TripTime Map">
 </p>
 
 ## Contributors

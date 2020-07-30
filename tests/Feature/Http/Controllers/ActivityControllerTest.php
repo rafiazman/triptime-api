@@ -168,7 +168,25 @@ class ActivityControllerTest extends TestCase
     }
 
     /** @test */
-    public function addUser__adds_user_to_activity_if_user_is_trip_participant()
+    public function addUser__returns_error_if_user_already_activity_participant()
+    {
+        $user = factory(User::class)->create();
+        $trip = factory(Trip::class)->create();
+        $location = factory(Location::class)->create([
+            'coordinates' => '100.22, 20.36'
+        ]);
+        $activity = factory(Activity::class)->create();
+        $trip->users()->attach($user);
+        $activity->users()->attach($user);
+
+        $response = $this->actingAs($user)
+            ->json('post', "/api/activity/$activity->id/join");
+
+        $response->assertStatus(409);
+    }
+
+    /** @test */
+    public function addUser__adds_user_to_activity_if_user_is_trip_participant_but_not_activity_participant()
     {
         $user = factory(User::class)->create();
         $trip = factory(Trip::class)->create();

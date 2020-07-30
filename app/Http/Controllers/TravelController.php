@@ -118,6 +118,10 @@ class TravelController extends Controller
     {
         $user = $request->user();
 
+        if ($travel->hasParticipant($user)) return response()->json([
+            'message' => 'You are already a participant of this activity.'
+        ], 409);
+
         if (!$travel->trip->hasParticipant($user))
             return response()->json([
                 'message' => 'You are not a participant of this trip.'

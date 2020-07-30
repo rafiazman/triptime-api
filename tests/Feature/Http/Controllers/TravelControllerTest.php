@@ -234,7 +234,8 @@ class TravelControllerTest extends TestCase
         ]);
         $travel = factory(Travel::class)->create();
 
-        $response = $this->json('post', "/api/travel/$travel->id/join");
+        $response = $this->actingAs($user)
+            ->json('post', "/api/travel/$travel->id/join");
 
         $response->assertStatus(401);
         $this->assertDatabaseMissing('user_pointer', [
@@ -242,5 +243,26 @@ class TravelControllerTest extends TestCase
             'pointer_id' => $travel->id,
             'pointer_type' => Travel::class
         ]);
+    }
+
+    /** @test */
+    public function addUser__returns_error_if_user_already_travel_participant()
+    {
+        $user = factory(User::class)->create();
+        $trip = factory(Trip::class)->create();
+        factory(Location::class)->create([
+            'coordinates' => '100.22, 20.36'
+        ]);
+        factory(Location::class)->create([
+            'coordinates' => '100.23, 20.37'
+        ]);
+        $travel = factory(Travel::class)->create();
+        $trip->users()->attach($user);
+        $travel->users()->attach($user);
+
+        $response = $this->actingAs($user)
+            ->json('post', "/api/travel/$travel->id/join");
+
+        $response->assertStatus(409);
     }
 }

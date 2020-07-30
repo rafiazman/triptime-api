@@ -94,4 +94,8 @@ class Activity extends Model
     {
         return $this->morphToMany(User::class, 'pointer', 'user_pointer');
     }
+
+    public function hasParticipant(User $user) {
+        return $this->users->contains('id', $user->id);
+    }
 }

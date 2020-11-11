@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
-class MessageSeeder extends Seeder
+class TravelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +13,6 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Message::class, 35)->create();
+        factory(\App\Travel::class, 2)->create();
     }
 }

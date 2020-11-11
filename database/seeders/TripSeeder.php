@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
-class ActivitySeeder extends Seeder
+class TripSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +13,6 @@ class ActivitySeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Activity::class, 8)->create();
+        factory(\App\Trip::class, 5)->create();
     }
 }
